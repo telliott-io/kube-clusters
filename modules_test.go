@@ -13,9 +13,6 @@ func TestCivo(t *testing.T) {
 	terraformOptions := &terraform.Options{
 		// The path to where your Terraform code is located
 		TerraformDir: ".",
-		Vars: map[string]interface{}{
-			"civo_api_token": "H5KtzxPFkYb9V1ER6l04Cq2fnGILXcJOS7AjNTvagW8roymDuZ",
-		},
 	}
 
 	// At the end of the test, run `terraform destroy`
