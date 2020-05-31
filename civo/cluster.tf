@@ -7,7 +7,14 @@ output kubeconfig {
   value = civo_kubernetes_cluster.cluster1.kubeconfig
 }
 
+resource "time_sleep" "wait_for_cluster" {
+  depends_on = [civo_kubernetes_cluster.cluster1]
+
+  create_duration = "20s"
+}
+
 output "kubernetes" {
+  depends_on = [time_sleep.wait_for_cluster]
   value = {
     load_config_file = false
     host     = civo_kubernetes_cluster.cluster1.api_endpoint
