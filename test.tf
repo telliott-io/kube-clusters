@@ -3,10 +3,11 @@ module "civo" {
 }
 
 provider "civo" {
-  token = var.civo_api_token
+  token = var.civo_api_key
 }
 
-variable "civo_api_token" {}
+variable "civo_api_key" {
+}
 
 provider "kubernetes" {
     load_config_file = false
@@ -30,12 +31,12 @@ resource "kubernetes_config_map" "example" {
   }
 
   data = {
-    hello             = "world"
+    hello = "world"
   }
 }
 
 data "kubernetes_config_map" "example" {
-  depends_on = ["kubernetes_config_map.example"]
+  depends_on = [kubernetes_config_map.example]
   metadata {
     name = "test-config"
     namespace = "test"
