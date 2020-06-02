@@ -1,7 +1,9 @@
 resource "civo_kubernetes_cluster" "cluster1" {
-    name = "test-cluster"
+    name = var.cluster_name
     num_target_nodes = 2
 }
+
+variable cluster_name {}
 
 output kubeconfig {
   value = civo_kubernetes_cluster.cluster1.kubeconfig

@@ -1,5 +1,6 @@
 module "civo" {
     source = "./civo"
+    cluster_name = "test-cluster"
 }
 
 provider "civo" {
