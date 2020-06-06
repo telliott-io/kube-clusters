@@ -2,13 +2,27 @@ name: 'Test'
 on: [push]
 
 jobs:
-  test:
+  civo:
     runs-on: ubuntu-latest
-    name: Test
+    name: Civo
     steps:
       - name: "Checkout"
         uses: actions/checkout@master
       - name: Test
         uses: ./.github/actions/terratest
+        with:
+          args: -run TestCivo
     env:
       TF_VAR_civo_api_key: ${{ secrets.CivoApiKey }}
+  do:
+    runs-on: ubuntu-latest
+    name: DigitalOcean
+    steps:
+      - name: "Checkout"
+        uses: actions/checkout@master
+      - name: Test
+        uses: ./.github/actions/terratest
+        with:
+          args: -run TestDigitalOcean
+    env:
+      TF_VAR_digitalocean_token: ${{ secrets.DigitalOceanToken }}

@@ -1,22 +1,22 @@
-module "civo" {
-    source = "./civo"
+module "digitalocean" {
+    source = "../../digitalocean"
     cluster_name = "test-cluster"
 }
 
-provider "civo" {
-  token = var.civo_api_key
+provider "digitalocean" {
+  token = var.digitalocean_token
 }
 
-variable "civo_api_key" {
+variable "digitalocean_token" {
 }
 
 provider "kubernetes" {
     load_config_file = false
-    host     = module.civo.kubernetes.host
-    username = module.civo.kubernetes.username
-    password = module.civo.kubernetes.password
-    cluster_ca_certificate = module.civo.kubernetes.cluster_ca_certificate
-    token = module.civo.kubernetes.token
+    host     = module.digitalocean.kubernetes.host
+    username = module.digitalocean.kubernetes.username
+    password = module.digitalocean.kubernetes.password
+    cluster_ca_certificate = module.digitalocean.kubernetes.cluster_ca_certificate
+    token = module.digitalocean.kubernetes.token
 }
 
 resource "kubernetes_namespace" "test" {

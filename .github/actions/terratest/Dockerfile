@@ -19,4 +19,4 @@ RUN wget -q https://github.com/civo/terraform-provider-civo/releases/download/v$
     && mkdir -p /plugins \
     && mv terraform-provider-civo /plugins/terraform-provider-civo
 
-CMD ["/entrypoint.sh"]
+ENTRYPOINT ["/entrypoint.sh"]

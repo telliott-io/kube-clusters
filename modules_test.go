@@ -10,9 +10,20 @@ func TestCivo(t *testing.T) {
 	if testing.Short() {
 		t.Skip()
 	}
+	runTestForEnv(t, "testdata/civo")
+}
+
+func TestDigitalOcean(t *testing.T) {
+	if testing.Short() {
+		t.Skip()
+	}
+	runTestForEnv(t, "testdata/digitalocean")
+}
+
+func runTestForEnv(t *testing.T, path string) {
 	terraformOptions := &terraform.Options{
 		// The path to where your Terraform code is located
-		TerraformDir: ".",
+		TerraformDir: path,
 	}
 
 	// At the end of the test, run `terraform destroy`
