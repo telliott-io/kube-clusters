@@ -12,7 +12,7 @@ output kubeconfig {
 resource "time_sleep" "wait_for_cluster" {
   depends_on = [civo_kubernetes_cluster.cluster1]
 
-  create_duration = "20s"
+  create_duration = "60s"
 }
 
 output "kubernetes" {
