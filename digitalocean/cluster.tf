@@ -17,7 +17,7 @@ variable cluster_name {}
 resource "time_sleep" "wait_for_cluster" {
   depends_on = [digitalocean_kubernetes_cluster.primary]
 
-  create_duration = "1s"
+  create_duration = "20s"
 }
 
 output "kubernetes" {
