@@ -23,6 +23,6 @@ jobs:
       - name: Test
         uses: ./.github/actions/terratest
         with:
-          args: -run TestDigitalOcean
+          args: -run TestDigitalOcean -count 10
     env:
       TF_VAR_digitalocean_token: ${{ secrets.DigitalOceanToken }}
