@@ -1,17 +1,16 @@
 module "cluster" {
-    source = "../../civo"
-    cluster_name = var.cluster_name
+    source = "../../gke"
+    cluster_name = "test-cluster"
 }
 
-provider "civo" {
-  token = var.civo_api_key
+provider "google" {
+  credentials = base64decode(var.gcloud_credentials_base64)
+  project     = "telliott-io"
+  region      = "us-central1"
+  zone        = "us-central1-c"
 }
 
-variable "civo_api_key" {
-}
-
-variable "cluster_name" {
-}
+variable "gcloud_credentials_base64" {}
 
 provider "kubernetes" {
     load_config_file = false
@@ -20,6 +19,8 @@ provider "kubernetes" {
     password = module.cluster.kubernetes.password
     cluster_ca_certificate = module.cluster.kubernetes.cluster_ca_certificate
     token = module.cluster.kubernetes.token
+    client_certificate = module.cluster.kubernetes.client_certificate
+    client_key = module.cluster.kubernetes.client_key
 }
 
 module "verification" {

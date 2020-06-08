@@ -7,20 +7,21 @@ import (
 )
 
 func TestCivo(t *testing.T) {
-	if testing.Short() {
-		t.Skip()
-	}
 	runTestForEnv(t, "testdata/civo")
 }
 
 func TestDigitalOcean(t *testing.T) {
-	if testing.Short() {
-		t.Skip()
-	}
 	runTestForEnv(t, "testdata/digitalocean")
 }
 
+func TestGKE(t *testing.T) {
+	runTestForEnv(t, "testdata/gke")
+}
+
 func runTestForEnv(t *testing.T, path string) {
+	if testing.Short() {
+		t.Skip()
+	}
 	terraformOptions := &terraform.Options{
 		// The path to where your Terraform code is located
 		TerraformDir: path,

@@ -38,3 +38,15 @@ jobs:
       RUN: ${{ matrix.run }}
       TF_VAR_digitalocean_token: ${{ secrets.DigitalOceanToken }}
       TF_VAR_cluster_name: test-cluster-${{matrix.run}}
+  gke:
+    runs-on: ubuntu-latest
+    name: GKE
+    steps:
+      - name: "Checkout"
+        uses: actions/checkout@master
+      - name: Test
+        uses: ./.github/actions/terratest
+        with:
+          args: -run TestGKE
+    env:
+      TF_VAR_gcloud_credentials_base64: ${{ secrets.GCloudCredentialsBase64 }}
