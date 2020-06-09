@@ -1,6 +1,6 @@
 module "digitalocean" {
     source = "../../digitalocean"
-    cluster_name = "test-cluster"
+    cluster_name = var.cluster_name
 }
 
 provider "digitalocean" {
@@ -8,6 +8,9 @@ provider "digitalocean" {
 }
 
 variable "digitalocean_token" {
+}
+
+variable "cluster_name" {
 }
 
 provider "kubernetes" {

@@ -20,7 +20,6 @@ jobs:
     strategy:
       matrix:
         run: [1,2,3,4,5]
-      max-parallel: 1
     steps:
       - name: "Checkout"
         uses: actions/checkout@master
@@ -31,3 +30,4 @@ jobs:
     env:
       RUN: ${{ matrix.run }}
       TF_VAR_digitalocean_token: ${{ secrets.DigitalOceanToken }}
+      TF_VAR_cluster_name: test-cluster-${{matrix.run}}
