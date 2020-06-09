@@ -4,4 +4,4 @@
 mkdir -p testdata/civo/terraform.d/plugins/linux_amd64/
 cp /plugins/* testdata/civo/terraform.d/plugins/linux_amd64/
 
-go test . -timeout 2h -v $@
+go test . -timeout 30m -v $@

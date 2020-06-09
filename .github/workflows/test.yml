@@ -17,12 +17,16 @@ jobs:
   do:
     runs-on: ubuntu-latest
     name: DigitalOcean
+    strategy:
+      matrix:
+        run: [1,2,3,4,5]
     steps:
       - name: "Checkout"
         uses: actions/checkout@master
       - name: Test
         uses: ./.github/actions/terratest
         with:
-          args: -run TestDigitalOcean -count 10
+          args: -run TestDigitalOcean
     env:
+      RUN: ${{ matrix.run }}
       TF_VAR_digitalocean_token: ${{ secrets.DigitalOceanToken }}

@@ -24,6 +24,9 @@ func runTestForEnv(t *testing.T, path string) {
 	terraformOptions := &terraform.Options{
 		// The path to where your Terraform code is located
 		TerraformDir: path,
+		EnvVars: map[string]string{
+			"TF_LOGS": "TRACE",
+		},
 	}
 
 	// At the end of the test, run `terraform destroy`
