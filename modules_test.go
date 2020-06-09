@@ -25,7 +25,7 @@ func runTestForEnv(t *testing.T, path string) {
 		// The path to where your Terraform code is located
 		TerraformDir: path,
 		EnvVars: map[string]string{
-			"TF_LOGS": "TRACE",
+			"TF_LOG": "DEBUG",
 		},
 	}
 
