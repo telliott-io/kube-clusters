@@ -1,6 +1,6 @@
 module "civo" {
     source = "../../civo"
-    cluster_name = "test-cluster"
+    cluster_name = var.cluster_name
 }
 
 provider "civo" {
@@ -8,6 +8,9 @@ provider "civo" {
 }
 
 variable "civo_api_key" {
+}
+
+variable "cluster_name" {
 }
 
 provider "kubernetes" {
