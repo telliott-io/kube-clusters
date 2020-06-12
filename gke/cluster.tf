@@ -28,25 +28,29 @@ resource "google_container_cluster" "primary" {
   }
 }
 
-variable cluster_name {}
+# Retrieve an access token as the Terraform runner
+data "google_client_config" "provider" {}
 
-resource "time_sleep" "wait_for_cluster" {
+data "google_container_cluster" "my_cluster" {
   depends_on = [google_container_cluster.primary]
-
-  create_duration = "20s"
+  name     = var.cluster_name
+  location = "us-central1"
 }
 
 output "kubernetes" {
-  depends_on = [time_sleep.wait_for_cluster]
   value = {
     load_config_file = false
-    host     = google_container_cluster.primary.endpoint
+    host  = "https://${data.google_container_cluster.my_cluster.endpoint}"
+    token = data.google_client_config.provider.access_token
+    cluster_ca_certificate = base64decode(
+      data.google_container_cluster.my_cluster.master_auth[0].cluster_ca_certificate,
+    )
     username = null
     password = null
-    token = null
-    cluster_ca_certificate = base64decode(google_container_cluster.primary.master_auth.0.cluster_ca_certificate)
-    client_certificate = base64decode(google_container_cluster.primary.master_auth.0.client_certificate)
-    client_key = base64decode(google_container_cluster.primary.master_auth.0.client_key)
+    client_certificate = null
+    client_key = null
   }
   sensitive = true
 }
+
+variable cluster_name {}
