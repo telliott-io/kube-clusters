@@ -5,6 +5,7 @@ jobs:
   civo:
     runs-on: ubuntu-latest
     name: Civo
+    continue-on-error: true
     strategy:
       matrix:
         run: [1,2,3]
@@ -35,12 +36,16 @@ jobs:
         with:
           args: -run TestDigitalOcean
     env:
-      RUN: ${{ matrix.run }}
       TF_VAR_digitalocean_token: ${{ secrets.DigitalOceanToken }}
       TF_VAR_cluster_name: test-cluster-${{matrix.run}}
   gke:
     runs-on: ubuntu-latest
     name: GKE
+    continue-on-error: true
+    strategy:
+      matrix:
+        run: [1,2,3]
+      max-parallel: 3
     steps:
       - name: "Checkout"
         uses: actions/checkout@master
@@ -50,3 +55,4 @@ jobs:
           args: -run TestGKE
     env:
       TF_VAR_gcloud_credentials_base64: ${{ secrets.GCloudCredentialsBase64 }}
+      TF_VAR_cluster_name: test-cluster-${{matrix.run}}

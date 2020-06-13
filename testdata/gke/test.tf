@@ -1,6 +1,6 @@
 module "cluster" {
     source = "../../gke"
-    cluster_name = "test-cluster"
+    cluster_name = var.cluster_name
 }
 
 provider "google" {
@@ -11,6 +11,9 @@ provider "google" {
 }
 
 variable "gcloud_credentials_base64" {}
+
+variable "cluster_name" {
+}
 
 provider "kubernetes" {
     load_config_file = false
