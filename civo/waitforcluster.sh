@@ -7,8 +7,8 @@ echo "Checking cluster health"
 OUT=$(curl --silent --insecure --user $USER:$PASSWORD "$HOST/healthz")
 
 # Check for an ok response
-if [$OUT!="ok\n"]
-then
+while [ "$OUT" != "ok" ]; do
     echo "Unexpected output: $OUT"
-    exit 2
-fi
+    OUT=$(curl --silent --insecure --user $USER:$PASSWORD "$HOST/healthz")
+    sleep 5
+done
