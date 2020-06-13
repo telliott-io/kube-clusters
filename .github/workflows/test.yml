@@ -50,4 +50,3 @@ jobs:
           args: -run TestGKE
     env:
       TF_VAR_gcloud_credentials_base64: ${{ secrets.GCloudCredentialsBase64 }}
-      TF_LOG: DEBUG
