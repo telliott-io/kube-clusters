@@ -1,8 +1,10 @@
+data "digitalocean_kubernetes_versions" "example" {}
+
 resource "digitalocean_kubernetes_cluster" "primary" {
   name    = var.cluster_name
   region  = "nyc1"
-  # Grab the latest version slug from `doctl kubernetes options versions`
-  version = "1.16.10-do.0"
+  # Default to the latest version slug
+  version = data.digitalocean_kubernetes_versions.example.latest_version
   tags    = ["production"]
 
   node_pool {
