@@ -14,15 +14,15 @@ variable "cluster_name" {
 }
 
 provider "kubernetes" {
-    load_config_file = lookup(module.cluster, "load_config_file", false)
-    config_path = lookup(module.cluster, "config_path", null)
-    host     = lookup(module.cluster, "host", null)
-    username = lookup(module.cluster, "username", null)
-    password = lookup(module.cluster, "password", null)
-    cluster_ca_certificate = lookup(module.cluster, "cluster_ca_certificate", null)
-    token = lookup(module.cluster, "token", null)
-    client_certificate = lookup(module.cluster, "client_certificate", null)
-    client_key = lookup(module.cluster, "client_key", null)
+    load_config_file = lookup(module.cluster.kubernetes, "load_config_file", false)
+    config_path = lookup(module.cluster.kubernetes, "config_path", null)
+    host     = lookup(module.cluster.kubernetes, "host", null)
+    username = lookup(module.cluster.kubernetes, "username", null)
+    password = lookup(module.cluster.kubernetes, "password", null)
+    cluster_ca_certificate = lookup(module.cluster.kubernetes, "cluster_ca_certificate", null)
+    token = lookup(module.cluster.kubernetes, "token", null)
+    client_certificate = lookup(module.cluster.kubernetes, "client_certificate", null)
+    client_key = lookup(module.cluster.kubernetes, "client_key", null)
 }
 
 module "verification" {
