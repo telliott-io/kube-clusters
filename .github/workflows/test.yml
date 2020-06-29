@@ -19,7 +19,7 @@ jobs:
           args: -run TestCivo
     env:
       TF_VAR_civo_api_key: ${{ secrets.CivoApiKey }}
-      TF_VAR_cluster_name: test-$GITHUB_RUN_ID-${{matrix.run}}
+      TF_VAR_cluster_name: test-${{ env.GITHUB_RUN_ID }}-${{matrix.run}}
   do:
     runs-on: ubuntu-latest
     name: DigitalOcean
@@ -37,7 +37,7 @@ jobs:
           args: -run TestDigitalOcean
     env:
       TF_VAR_digitalocean_token: ${{ secrets.DigitalOceanToken }}
-      TF_VAR_cluster_name: test-$GITHUB_RUN_ID-${{matrix.run}}
+      TF_VAR_cluster_name: test-${{ env.GITHUB_RUN_ID }}-${{matrix.run}}
   gke:
     runs-on: ubuntu-latest
     name: GKE
@@ -55,4 +55,4 @@ jobs:
           args: -run TestGKE
     env:
       TF_VAR_gcloud_credentials_base64: ${{ secrets.GCloudCredentialsBase64 }}
-      TF_VAR_cluster_name: test-$GITHUB_RUN_ID-${{matrix.run}}
+      TF_VAR_cluster_name: test-${{ env.GITHUB_RUN_ID }}-${{matrix.run}}
