@@ -31,3 +31,8 @@ output "kubernetes" {
   }
   sensitive = true
 }
+
+output "dns_name" {
+  depends_on = [civo_kubernetes_cluster.cluster1]
+  value = civo_kubernetes_cluster.cluster1.dns_entry
+}
