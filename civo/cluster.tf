@@ -1,17 +1,6 @@
 resource "civo_kubernetes_cluster" "cluster1" {
     name = var.cluster_name
     num_target_nodes = 2
-
-    # Once provisioned, wait until the cluster can be accessed with the API
-    provisioner "local-exec" {
-    command = "${path.module}/waitforcluster.sh"
-
-    environment = {
-      HOST = civo_kubernetes_cluster.cluster1.api_endpoint
-      USER = yamldecode(civo_kubernetes_cluster.cluster1.kubeconfig).users[0].user.username
-      PASSWORD = yamldecode(civo_kubernetes_cluster.cluster1.kubeconfig).users[0].user.password
-    }
-  }
 }
 
 variable cluster_name {}
