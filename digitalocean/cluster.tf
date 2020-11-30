@@ -12,6 +12,11 @@ resource "digitalocean_kubernetes_cluster" "primary" {
     size       = "s-2vcpu-2gb"
     node_count = 3
   }
+
+  lifecycle {
+    # Don't  attempt to change the K8s version of existing clusters
+    ignore_changes = ["version"]
+  }
 }
 
 variable cluster_name {}
