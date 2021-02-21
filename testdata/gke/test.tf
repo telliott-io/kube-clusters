@@ -1,3 +1,12 @@
+terraform {
+  required_providers {
+    kubernetes = {
+      source = "hashicorp/kubernetes"
+      version = "2.0.2"
+    }
+  }
+}
+
 module "cluster" {
     source = "../../gke"
     cluster_name = var.cluster_name
@@ -16,7 +25,6 @@ variable "cluster_name" {
 }
 
 provider "kubernetes" {
-    load_config_file = lookup(module.cluster.kubernetes, "load_config_file", false)
     config_path = lookup(module.cluster.kubernetes, "config_path", null)
     host     = lookup(module.cluster.kubernetes, "host", null)
     username = lookup(module.cluster.kubernetes, "username", null)

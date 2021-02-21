@@ -2,24 +2,6 @@ name: 'Test'
 on: [push]
 
 jobs:
-  civo:
-    runs-on: ubuntu-latest
-    name: Civo
-    strategy:
-      fail-fast: false
-      matrix:
-        run: [1]
-      max-parallel: 3
-    steps:
-      - name: "Checkout"
-        uses: actions/checkout@master
-      - name: Test
-        uses: ./.github/actions/terratest
-        with:
-          args: -run TestCivo
-    env:
-      TF_VAR_civo_api_key: ${{ secrets.CivoApiKey }}
-      TF_VAR_cluster_name: test-${{ github.run_id }}-${{matrix.run}}
   do:
     runs-on: ubuntu-latest
     name: DigitalOcean

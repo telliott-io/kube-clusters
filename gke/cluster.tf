@@ -1,3 +1,12 @@
+terraform {
+  required_providers {
+    google = {
+      source = "hashicorp/google"
+      version = "3.57.0"
+    }
+  }
+}
+
 resource "google_container_cluster" "primary" {
   name     = var.cluster_name
   location = "us-central1"

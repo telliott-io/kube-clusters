@@ -6,10 +6,6 @@ import (
 	"github.com/gruntwork-io/terratest/modules/terraform"
 )
 
-func TestCivo(t *testing.T) {
-	runTestForEnv(t, "testdata/civo")
-}
-
 func TestDigitalOcean(t *testing.T) {
 	runTestForEnv(t, "testdata/digitalocean")
 }
