@@ -1,5 +1,9 @@
 name: 'Test'
-on: [push]
+on:
+  pull_request:
+  push:
+  schedule:
+  - cron: "0 21 * * 5" # Run at 11pm every Friday for weekend fixes
 
 jobs:
   do:
