@@ -1,6 +1,6 @@
 FROM golang:1.14.3
 
-ENV TERRAFORM_VERSION="0.12.26"
+ENV TERRAFORM_VERSION="0.13.6"
 
 # Copies your code file from your action repository to the filesystem path `/` of the container
 COPY entrypoint.sh /entrypoint.sh
