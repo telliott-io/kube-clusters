@@ -28,7 +28,7 @@ resource "digitalocean_kubernetes_cluster" "primary" {
 
   lifecycle {
     # Don't  attempt to change the K8s version of existing clusters
-    ignore_changes = ["version"]
+    ignore_changes = [version]
   }
 }
 
