@@ -4,10 +4,10 @@ terraform {
       source = "hashicorp/kubernetes"
       version = "2.0.2"
     }
-  }
-  google = {
-    source = "hashicorp/google"
-    version = "3.58.0"
+    google = {
+      source = "hashicorp/google"
+      version = "3.58.0"
+    }
   }
 }
 
