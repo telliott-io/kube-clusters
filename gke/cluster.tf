@@ -51,5 +51,3 @@ output "kubernetes" {
   }
   sensitive = true
 }
-
-variable cluster_name {}

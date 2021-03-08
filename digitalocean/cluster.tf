@@ -32,8 +32,6 @@ resource "digitalocean_kubernetes_cluster" "primary" {
   }
 }
 
-variable cluster_name {}
-
 resource "time_sleep" "wait_for_cluster" {
   depends_on = [digitalocean_kubernetes_cluster.primary]
 

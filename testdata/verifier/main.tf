@@ -9,7 +9,7 @@ terraform {
 
 resource "kubernetes_namespace" "test" {
   metadata {
-    name = "test"
+    name = var.namespace
   }
 }
 
@@ -17,7 +17,7 @@ resource "kubernetes_config_map" "example" {
   depends_on = [kubernetes_namespace.test]
   metadata {
     name = "test-config"
-    namespace = "test"
+    namespace = var.namespace
   }
 
   data = {
@@ -29,10 +29,14 @@ data "kubernetes_config_map" "example" {
   depends_on = [kubernetes_config_map.example]
   metadata {
     name = "test-config"
-    namespace = "test"
+    namespace = var.namespace
   }
 }
 
 output "hello" {
   value = data.kubernetes_config_map.example.data.hello
+}
+
+variable namespace {
+  default = "test"
 }

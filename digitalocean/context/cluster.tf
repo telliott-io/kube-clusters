@@ -11,8 +11,6 @@ data "digitalocean_kubernetes_cluster" "primary" {
   name    = var.cluster_name
 }
 
-variable cluster_name {}
-
 output "kubernetes" {
   value = {
     load_config_file = false
